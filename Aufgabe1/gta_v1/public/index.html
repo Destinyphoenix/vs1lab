@@ -1,70 +1,148 @@
-<!DOCTYPE html>
+<!doctype html>
 
 <!-- File origin: VS1LAB A1a -->
 
 <html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>GeoTagApp</title>
+        <link rel="stylesheet" href="./stylesheets/style.css" />
+    </head>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GeoTagApp</title>
-    <link rel="stylesheet" href="./stylesheets/style.css" />
-</head>
+    <body>
+        <header class="header">
+            <img
+                src="./images/location.png"
+                class="header__image"
+                alt="an image of a map and location"
+            />
+            <h1 class="header__title">GeoTagApp</h1>
+            <nav class="header__navigation">
+                <a href="#">About</a> | <a href="#">Help</a> |
+                <a href="/">Home</a>
+            </nav>
+        </header>
 
-<body>
-    <header class="header">
-        <img src="./images/location.png" class="header__image" alt="an image of a map and location">
-        <h1 class="header__title">GeoTagApp</h1>
-        <nav class="header__navigation">
-            <a href="#">About</a> | <a href="#">Help</a> | <a href="/">Home</a>
-        </nav>
-    </header>
+        <main class="main">
+            <section class="main__tagging tagging">
+                <h2>Tagging</h2>
+                <p>test</p>
 
-    <main class="main">
-        <section class="main__tagging tagging">
-            <h2>Tagging</h2>
+                <!-- ############### VS1Lab 1a Form 1 Start -->
+                <form id="tag-form" action="/tagging" method="post">
+                    <!-- ... your code here ... -->
+                    latitude, longitude, name und hashtag
+                    <fieldset>
+                        <legend>name your Tag</legend>
+                        <br />
+                        <label for="tag-name">Name</label>
+                        <input
+                            id="tag-name"
+                            type="text"
+                            name="name"
+                            placeholder="name"
+                            pattern="[A-Za-z]{1,10}"
+                            required
+                        />
 
-            <!-- ############### VS1Lab 1a Form 1 Start -->
-            <form id="tag-form" action="/tagging" method="post">
+                        <br />
+                        <label for="tag-hashtag">Hashtag</label>
+                        <input
+                            id="tag-hashtag"
+                            type="text"
+                            name="hashtag"
+                            placeholder="#sunset"
+                            pattern="#[A-Za-z]{1,10}"
+                        />
+                    </fieldset>
+                    <fieldset>
+                        <legend>your Data</legend>
+                        <br />
+                        <label for="tag-latitude">Latitude</label>
+                        <input
+                            id="tag-latitude"
+                            type="number"
+                            name="latitude"
+                            value="49.00937"
+                            readonly
+                        />
 
-                <!-- ... your code here ... -->
+                        <br />
+                        <label for="tag-longitude">Longitude</label>
+                        <input
+                            id="tag-longitude"
+                            type="number"
+                            name="longitude"
+                            value="8.40444"
+                            readonly
+                        />
+                    </fieldset>
+                    <input type="submit" value="Submit" />
+                </form>
+                <!-- ############### VS1Lab 1a Form 1 End -->
+            </section>
 
-            </form>
-            <!-- ############### VS1Lab 1a Form 1 End -->
+            <section class="main__discovery discovery">
+                <h2 class="discovery__title">Discovery</h2>
 
-        </section>
+                <!-- ############### VS1Lab 1a Form 2 Start -->
+                <form
+                    class="discovery__search"
+                    id="discoveryFilterForm"
+                    action="/discovery"
+                    method="post"
+                >
+                    <label for="searchterm">Suchbegriff</label>
+                    <input
+                        id="searchterm"
+                        type="text"
+                        name="searchterm"
+                        placeholder="#sunset"
+                    />
+                    <input
+                        id="tag-latitude"
+                        type="number"
+                        name="latitude"
+                        value="49.00937"
+                        readonly
+                        hidden
+                    />
+                    <input
+                        id="tag-longitude"
+                        type="number"
+                        name="longitude"
+                        value="8.40444"
+                        readonly
+                        hidden
+                    />
+                    <input type="submit" value="Suchen"
+                    <!-- ... your code here ... -->
+                </form>
+                <!-- ############### VS1Lab 1a Form 2 End -->
 
-        <section class="main__discovery discovery">
-            <h2 class="discovery__title">Discovery</h2>
+                <div class="discovery__wrapper">
+                    <div class="discovery__taglist">
+                        <ul class="discovery__results" id="discoveryResults">
+                            <li>Castle (49.01379, 8.404435) #sight</li>
+                            <li>IWI (49.01379, 8.390071) #edu</li>
+                        </ul>
+                    </div>
 
-            <!-- ############### VS1Lab 1a Form 2 Start -->
-            <form class="discovery__search" id="discoveryFilterForm" action="/discovery" method="post">
-
-                <!-- ... your code here ... -->
-
-            </form>
-            <!-- ############### VS1Lab 1a Form 2 End -->
-
-            <div class="discovery__wrapper">
-                <div class="discovery__taglist">
-                    <ul class="discovery__results" id="discoveryResults">
-                        <li>Castle (49.01379, 8.404435) #sight</li>
-                        <li>IWI (49.01379, 8.390071) #edu</li>
-                    </ul>
+                    <div id="map" class="discovery__map">
+                        <img
+                            src="./images/mapview.jpg"
+                            alt="a map with locations"
+                            id="mapView"
+                        />
+                        <span>Result map</span>
+                    </div>
                 </div>
+            </section>
+        </main>
 
-                <div id="map" class="discovery__map">
-                    <img src="./images/mapview.jpg" alt="a map with locations" id="mapView" />
-                    <span>Result map</span>
-                </div>
-            </div>
-        </section>
-
-    </main>
-
-    <footer class="footer">
-        <span>(c) 2026 HKA_IWI_VSYS</span>
-    </footer>
-</body>
-
+        <footer class="footer">
+            <span>(c) 2026 HKA_IWI_VSYS</span>
+        </footer>
+    </body>
 </html>
