@@ -46,9 +46,52 @@ a {
     color: var(--link-color);
 }
 
-/* ### TODO ### Styles for other HTML elements */
+/* Styles for other HTML elements (Element-Selektoren) */
 
-/* ... your code here ... */
+h2 {
+    margin-bottom: 1rem;
+}
+
+fieldset {
+    border: 1px solid var(--border-color);
+    padding: 1rem;
+}
+
+legend {
+    padding: 0 0.25rem;
+}
+
+/* Labels und Eingaben untereinander: display:block statt <br> im HTML */
+label,
+input {
+    display: block;
+}
+
+label {
+    margin-bottom: 0.4rem;
+}
+
+/* "Größere Boxen" für die Eingaben aller Formulare */
+input {
+    width: 100%;
+    max-width: 16rem;
+    padding: 0.6rem;
+    margin-bottom: 1rem;
+    font-size: 1rem;
+    border: 1px solid var(--border-color);
+}
+
+/* feste Werte grau hinterlegen, damit klar ist: nicht änderbar */
+input[readonly] {
+    background-color: var(--background-color);
+}
+
+input[type="submit"] {
+    background-color: var(--background-color);
+    cursor: pointer;
+    margin-bottom: 0;
+}
+
 /* rot, sobald der Nutzer etwas Ungültiges eingegeben hat */
 input:user-invalid {
     border: 2px solid red;
@@ -116,26 +159,83 @@ input:user-valid {
     width: calc(100% - 1rem);
 }
 
-/* ### TODO ### Styles for Header Component */
+/* Styles for Header Component (Klassen-Selektoren, BEM) */
 
-/* ... your code here ... */
+/* farbig abgesetzt; Flexbox legt Bild, Titel und Navigation in eine Zeile */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2rem 3rem;
+    background-color: var(--background-color);
+    border-bottom: 1px solid var(--border-color);
+}
 
-/* ### TODO ### Styles for Main Component */
+.header__image {
+    height: 3rem;
+}
 
-/* ... your code here ... */
+/* Styles for Main Component */
 
-/* ### TODO ### Styles for Tagging component */
+.main {
+    padding: 3rem;
+}
 
-/* ... your code here ... */
+/* Styles for Tagging component */
 
-/* ### TODO ### Styles for Discovery component */
+/* Tagging-Eingaben stehen vertikal untereinander (siehe label/input display:block) */
 
-/* ... your code here ... */
+/* Styles for Discovery component */
 
-/* ### TODO ### Styles for Footer Component */
+.discovery__search {
+    margin-bottom: 2rem;
+}
 
-/* ... your code here ... */
+/* Ergebnisliste ohne Aufzählungspunkte, jeder Eintrag als farbige Box */
+.discovery__results {
+    list-style: none;
+}
 
-/* ### TODO ### Media Queries */
+.discovery__results li {
+    padding: 1rem;
+    margin-bottom: 1rem;
+    color: var(--link-color);
+    background-color: var(--background-color);
+    border: 1px solid var(--border-color);
+}
 
-/* ... your code here ... */
+/* Karte skaliert mit der Spaltenbreite mit (ID-Selektor) */
+#mapView {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.discovery__map span {
+    color: var(--gray-color);
+}
+
+/* Styles for Footer Component */
+
+.footer {
+    padding: 2rem 3rem;
+    background-color: var(--background-color);
+    border-top: 1px solid var(--border-color);
+}
+
+/* Media Queries */
+
+/* unter 850px Breite: Reihen werden zu Spalten, jede Spalte volle Breite */
+@media (max-width: 850px) {
+    /* flex-start: sonst verteilt space-between die Resthöhe als Lücke zwischen den Spalten */
+    .row {
+        flex-direction: column;
+        justify-content: flex-start;
+    }
+
+    /* trifft alle Klassen, die mit "col-" beginnen (Attribut-Selektor) */
+    [class*="col-"] {
+        width: 100%;
+        margin-bottom: 2rem;
+    }
+}
